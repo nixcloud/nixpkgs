@@ -5308,10 +5308,13 @@ let self = _self // overrides; _self = with self; {
   };
 
   ExtUtilsMakeMaker = buildPerlPackage {
-    name = "ExtUtils-MakeMaker-7.32";
+    name = "ExtUtils-MakeMaker-7.34";
+    # tests via nix-env won't build unless this patch is in, via nix-shell it builds even without this patch...
+    # https://github.com/Perl-Toolchain-Gang/ExtUtils-MakeMaker/issues/315
+    patches = [ ../development/perl-modules/ExtUtils-MakeMaker-regexp.patch ];
     src = fetchurl {
-      url = mirror://cpan/authors/id/B/BI/BINGOS/ExtUtils-MakeMaker-7.32.tar.gz;
-      sha256 = "9a269f52ab59b125eb80b968271d9f49da0975d43e51363dbfd1695000ed69de";
+      url = mirror://cpan/authors/id/B/BI/BINGOS/ExtUtils-MakeMaker-7.34.tar.gz;
+      sha256 = "1044ysxvrxk6asz5mswrw7paxxv8r175f6q3inr003a8vr2fpwcm";
     };
     meta = {
       homepage = https://metacpan.org/release/ExtUtils-MakeMaker;
@@ -10339,6 +10342,10 @@ let self = _self // overrides; _self = with self; {
       url = "mirror://cpan/authors/id/M/MI/MIKER/${name}.tar.gz";
       sha256 = "ec5a82dfb7028bcd28bb3d569f95d87dd4166cc19867f2184ed3a59f6d6ca0e7";
     };
+    checkPhase = ''
+      make test TEST_VERBOSE=1
+    '';
+    buildInputs = [ ExtUtilsMakeMaker ];
     meta = {
       description = "Manages IPv4 and IPv6 addresses and subnets";
       license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];

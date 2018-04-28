@@ -1,0 +1,21 @@
+diff --git a/lib/ExtUtils/MM_Unix.pm b/lib/ExtUtils/MM_Unix.pm
+index fe53be1..753d588 100644
+--- a/lib/ExtUtils/MM_Unix.pm
++++ b/lib/ExtUtils/MM_Unix.pm
+@@ -2014,7 +2014,7 @@ sub init_PERL {
+         $self->find_perl(5.0, \@perls, \@defpath, $Verbose );
+ 
+     my $perl = $self->{PERL};
+-    $perl =~ s/^"//;
++    $perl =~ s/"//g;
+     my $has_mcr = $perl =~ s/^MCR\s*//;
+     my $perlflags = '';
+     my $stripped_perl;
+@@ -2039,6 +2039,7 @@ sub init_PERL {
+       ($self->{FULLPERL} = $self->{PERL}) =~ s/\Q$miniperl\E$/$perl_name$Config{exe_ext}/i;
+       $self->{FULLPERL} = qq{"$self->{FULLPERL}"}.$perlflags;
+     }
++    $self->{FULLPERL} =~ s/"//g;
+     # Can't have an image name with quotes, and findperl will have
+     # already escaped spaces.
+     $self->{FULLPERL} =~ tr/"//d if $Is{VMS};
