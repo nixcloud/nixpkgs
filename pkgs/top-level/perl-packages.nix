@@ -12073,6 +12073,8 @@ let self = _self // overrides; _self = with self; {
       sha256 = "d7c2ed7f347a673b1425e4da7656073d6c52847bc7403bf57e3a404b52f7e501";
     };
     propagatedBuildInputs = [ DigestSHA1 URI ];
+
+    buildInputs = [ ExtUtilsMakeMaker ];
     meta = {
       homepage = http://razor.sourceforge.net/;
       description = "Collaborative, content-based spam filtering network agent";
