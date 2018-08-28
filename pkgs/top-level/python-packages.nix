@@ -2202,11 +2202,11 @@ in {
   elasticsearch = callPackage ../development/python-modules/elasticsearch { };
 
   elasticsearchdsl = buildPythonPackage (rec {
-    name = "elasticsearch-dsl-0.0.9";
+    name = "elasticsearch-dsl-6.2.1";
 
     src = pkgs.fetchurl {
       url = "mirror://pypi/e/elasticsearch-dsl/${name}.tar.gz";
-      sha256 = "1gdcdshk881vy18p0czcmbb3i4s5hl8llnfg6961b6x7jkvhihbj";
+      sha256 = "0f0w23kzyym0fkzisdkcl4xpnm8fsi97v1kskyvfrhj3mxy179fh";
     };
 
     buildInputs = with self; [ covCore dateutil elasticsearch mock pytest pytestcov unittest2 urllib3 pytz ];
