@@ -2991,6 +2991,8 @@ with pkgs;
 
   httplab = callPackage ../tools/networking/httplab { };
 
+  parsedmarc = callPackage ../tools/networking/parsedmarc { };
+
   partclone = callPackage ../tools/backup/partclone { };
 
   partimage = callPackage ../tools/backup/partimage { };
