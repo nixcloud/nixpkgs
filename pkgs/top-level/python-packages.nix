@@ -5880,6 +5880,8 @@ in {
 
   };
 
+  geoip2 = callPackage ../development/python-modules/geoip2 { };
+
   geopandas = callPackage ../development/python-modules/geopandas { };
 
   geojson = callPackage ../development/python-modules/geojson { };
