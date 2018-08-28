@@ -7284,6 +7284,8 @@ in {
 
   matrix-client = callPackage ../development/python-modules/matrix-client { };
 
+  maxminddb = callPackage ../development/python-modules/maxminddb { };
+
   maya = callPackage ../development/python-modules/maya { };
 
   mccabe = callPackage ../development/python-modules/mccabe { };
