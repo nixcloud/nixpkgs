@@ -1,19 +1,19 @@
-{ stdenv, buildPythonPackage, fetchPypi, libmaxminddb, pythonPackages}:
+{ stdenv, libmaxminddb, python3Packages}:
 
-buildPythonPackage rec {
+python3Packages.buildPythonPackage rec {
   pname = "maxminddb";
   version = "1.4.1";
   name = "${pname}-${version}";
 
-  src = fetchPypi {
+  src = python3Packages.fetchPypi {
     inherit pname version;
     sha256 = "04mpilsj76m29id5xfi8mmasdmh27ldn7r0dmh2rj6a8v2y5256z";
   };
 
-  propagatedBuildInputs = with pythonPackages; 
+  propagatedBuildInputs = with python3Packages; 
   [ requests libmaxminddb mock ] ++
   stdenv.lib.optional (isPy27) [ ipaddress ];
-  checkInputs = with pythonPackages; [ mock enum pyopenssl ];
+  checkInputs = with python3Packages; [ mock python3Packages.enum-compat pyopenssl ];
 
   preCheck = ''
     # Remove one failing test that only checks whether the command line works

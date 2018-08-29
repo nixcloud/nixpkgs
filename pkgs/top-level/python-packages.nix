@@ -15497,20 +15497,14 @@ EOF
 
   IMAPClient = buildPythonPackage rec {
     name = "IMAPClient-${version}";
-    version = "0.13";
-    disabled = isPy34 || isPy35;
+    version = "2.0.0";
 
     src = pkgs.fetchurl {
       url = "http://freshfoo.com/projects/IMAPClient/${name}.tar.gz";
-      sha256 = "0v7kd1crdbff0rmh4ddm5qszkis6hpk9084qh94al8h7g4y9l3is";
+      sha256 = "0yg548ib03v70g03nlpsnnwbyvhzbalb3gzw0wchcbyynpdww0ny";
     };
 
-    buildInputs = with self; [ mock ];
-
-    preConfigure = ''
-      sed -i '/distribute_setup/d' setup.py
-      substituteInPlace setup.py --replace "mock==0.8.0" "mock"
-    '';
+    buildInputs = with self; [ six ];
 
     meta = {
       homepage = http://imapclient.freshfoo.com/;
